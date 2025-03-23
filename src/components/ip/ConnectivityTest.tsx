@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { pingWebsite, Website } from '@/utils/ipUtils';
 import Button from '@/components/common/Button';
-import { RefreshCw, Wifi, WifiOff, Clock, Signal } from 'lucide-react';
+import { RefreshCw, Wifi, WifiOff, Clock, Signal, MapPin } from 'lucide-react';
 
 const ConnectivityTest: React.FC = () => {
   const [results, setResults] = useState<Website[]>([]);
@@ -88,17 +88,19 @@ const ConnectivityTest: React.FC = () => {
       )}
 
       <div className="space-y-2">
-        <div className="grid grid-cols-3 gap-2 py-2 font-medium text-sm">
+        <div className="grid grid-cols-5 gap-2 py-2 font-medium text-sm">
           <div>分类</div>
           <div>网站</div>
           <div>状态</div>
+          <div>IP地址</div>
+          <div>位置</div>
         </div>
         
         {results.length > 0 ? (
           results.map((site, index) => (
             <div
               key={index}
-              className="grid grid-cols-3 gap-2 py-2 text-sm border-t border-border"
+              className="grid grid-cols-5 gap-2 py-2 text-sm border-t border-border"
             >
               <div className="flex items-center">
                 <span className="inline-flex items-center justify-center px-2 py-0.5 rounded text-xs font-medium bg-secondary text-secondary-foreground">
@@ -106,18 +108,31 @@ const ConnectivityTest: React.FC = () => {
                 </span>
               </div>
               <div className="truncate">{site.name}</div>
-              <div>{renderStatus(site.online, site.latency)}</div>
+              <div>{renderStatus(site.online!, site.latency)}</div>
+              <div className="truncate">{site.ip || '-'}</div>
+              <div className="truncate flex items-center">
+                {site.location ? (
+                  <>
+                    <MapPin className="h-3 w-3 mr-1 text-muted-foreground" />
+                    <span>{site.location}</span>
+                  </>
+                ) : (
+                  '-'
+                )}
+              </div>
             </div>
           ))
         ) : loading ? (
           Array.from({ length: 8 }).map((_, index) => (
             <div
               key={index}
-              className="grid grid-cols-3 gap-2 py-2 text-sm border-t border-border animate-pulse"
+              className="grid grid-cols-5 gap-2 py-2 text-sm border-t border-border animate-pulse"
             >
               <div className="h-5 bg-muted rounded w-12"></div>
               <div className="h-5 bg-muted rounded w-20"></div>
               <div className="h-5 bg-muted rounded w-16"></div>
+              <div className="h-5 bg-muted rounded w-24"></div>
+              <div className="h-5 bg-muted rounded w-20"></div>
             </div>
           ))
         ) : (
