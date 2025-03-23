@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 export interface IPInfo {
@@ -41,6 +40,14 @@ export interface CDNResult {
   name: string;
   detected: boolean;
   headers?: Record<string, string>;
+}
+
+export interface Website {
+  name: string;
+  url: string;
+  category: string;
+  online?: boolean;
+  latency?: number | null;
 }
 
 // Fetch IP information
@@ -151,4 +158,38 @@ export const detectCDN = async (): Promise<CDNResult[]> => {
   ];
   
   return cdns;
+};
+
+// Ping website to test connectivity
+export const pingWebsite = async (website: Website): Promise<Website> => {
+  try {
+    const startTime = Date.now();
+    
+    // Set a timeout for the request
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
+    await axios.get(website.url, {
+      timeout: 5000,
+      signal: controller.signal,
+      validateStatus: () => true // Accept any status code as valid
+    });
+    
+    clearTimeout(timeoutId);
+    const endTime = Date.now();
+    const latency = endTime - startTime;
+    
+    return {
+      ...website,
+      online: true,
+      latency
+    };
+  } catch (error) {
+    console.error(`Error pinging ${website.url}:`, error);
+    return {
+      ...website,
+      online: false,
+      latency: null
+    };
+  }
 };
