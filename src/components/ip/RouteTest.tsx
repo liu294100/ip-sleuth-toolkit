@@ -1,18 +1,40 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@/components/common/Card';
 import Button from '@/components/common/Button';
-import { RouteHop } from '@/utils/ipUtils';
-import { RefreshCw, Network } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { RouteHop, popularWebsites } from '@/utils/ipUtils';
+import { RefreshCw, Network, Globe, Search } from 'lucide-react';
 
 interface RouteTestProps {
   data: RouteHop[] | null;
   loading: boolean;
   error: string | null;
-  onTest: () => void;
+  onTest: (domain?: string) => void;
 }
 
 const RouteTest: React.FC<RouteTestProps> = ({ data, loading, error, onTest }) => {
+  const [domain, setDomain] = useState('');
+  const [selectedWebsite, setSelectedWebsite] = useState<string | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDomain(e.target.value);
+    setSelectedWebsite(null); // Clear selection when typing
+  };
+
+  const handleWebsiteSelect = (domain: string) => {
+    setDomain(domain);
+    setSelectedWebsite(domain);
+    onTest(domain);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (domain) {
+      onTest(domain);
+    }
+  };
+
   return (
     <Card>
       <div className="flex flex-col space-y-4">
@@ -22,14 +44,59 @@ const RouteTest: React.FC<RouteTestProps> = ({ data, loading, error, onTest }) =
             路由追踪
           </h2>
           <Button
-            onClick={onTest}
+            onClick={() => onTest()}
             disabled={loading}
             variant="outline"
             size="sm"
             icon={loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
           >
-            {loading ? '测试中...' : '开始测试'}
+            {loading ? '测试中...' : '随机测试'}
           </Button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex space-x-2">
+          <div className="relative flex-1">
+            <Input 
+              placeholder="输入域名进行追踪 (example.com)" 
+              value={domain}
+              onChange={handleInputChange}
+              className="pr-10"
+            />
+            {domain && (
+              <button 
+                type="button"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                onClick={() => setDomain('')}
+              >
+                ×
+              </button>
+            )}
+          </div>
+          <Button 
+            type="submit" 
+            disabled={!domain || loading}
+            size="default"
+            icon={<Search className="w-4 h-4" />}
+          >
+            追踪
+          </Button>
+        </form>
+
+        <div className="flex flex-wrap gap-2">
+          <span className="text-sm text-muted-foreground mr-1 mt-1">常用网站：</span>
+          {popularWebsites.map((site) => (
+            <button
+              key={site.domain}
+              onClick={() => handleWebsiteSelect(site.domain)}
+              className={`px-2 py-1 text-xs rounded-md transition-colors ${
+                selectedWebsite === site.domain
+                  ? 'bg-primary text-white'
+                  : 'bg-muted hover:bg-muted/80'
+              }`}
+            >
+              {site.name}
+            </button>
+          ))}
         </div>
 
         {error && (
@@ -42,12 +109,13 @@ const RouteTest: React.FC<RouteTestProps> = ({ data, loading, error, onTest }) =
           <div className="min-h-[200px] flex flex-col items-center justify-center space-y-4">
             <RefreshCw className="w-6 h-6 text-muted-foreground animate-spin-slow" />
             <p className="text-muted-foreground">路由追踪中...</p>
+            {domain && <p className="text-xs text-muted-foreground">目标：{domain}</p>}
           </div>
         )}
 
         {!loading && !data && !error && (
           <div className="min-h-[200px] flex items-center justify-center">
-            <p className="text-muted-foreground">点击"开始测试"来追踪网络路由</p>
+            <p className="text-muted-foreground">请输入域名或选择一个网站进行路由追踪</p>
           </div>
         )}
 

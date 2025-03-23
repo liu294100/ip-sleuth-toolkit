@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { 
   IPInfo, 
@@ -72,7 +71,6 @@ export const useIPTests = () => {
     }
   });
 
-  // Load IP info on initial mount
   useEffect(() => {
     loadIPInfo();
   }, []);
@@ -176,7 +174,7 @@ export const useIPTests = () => {
     }
   };
 
-  const runRouteTest = async () => {
+  const runRouteTest = async (domain?: string) => {
     setTests(prev => ({
       ...prev,
       routeTest: {
@@ -187,7 +185,7 @@ export const useIPTests = () => {
     }));
 
     try {
-      const data = await performRouteTest();
+      const data = await performRouteTest(domain);
       setTests(prev => ({
         ...prev,
         routeTest: {
@@ -240,7 +238,6 @@ export const useIPTests = () => {
     }
   };
 
-  // Function to run all tests
   const runAllTests = async () => {
     loadIPInfo();
     runDNSTest();
