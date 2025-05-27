@@ -1,4 +1,4 @@
-# 🧰 MyIP - A Better IP Toolbox
+# 🧰 ip-sleuth-toolkit - A Better IP Toolbox
 
 <div align="center">
 
