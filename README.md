@@ -4,21 +4,19 @@
 
 ![IPCheck.ing Banner](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/gh_banner.png)
 
-<a href="https://trendshift.io/repositories/5332" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5332" alt="jason5ng32%2FMyIP | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/5332" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5332" alt="liu294100/ip-sleuth-toolkit" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
 [![Mentioned in Awesome Self Hosted](https://awesome.re/mentioned-badge.svg)](https://github.com/awesome-selfhosted/awesome-selfhosted)
-
-![GitHub Repo stars](https://img.shields.io/github/stars/jason5ng32/MyIP)
-![GitHub forks](https://img.shields.io/github/forks/jason5ng32/myip)
-![Docker Pulls](https://img.shields.io/docker/pulls/jason5ng32/myip)
+![GitHub forks](https://img.shields.io/github/forks/liu294100/ip-sleuth-toolkit)
+![Docker Pulls](https://img.shields.io/docker/pulls/liu294100/ip-sleuth-toolkit)
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fipcheck.ing&up_message=online&label=IPCheck.ing 'IPCheck.ing')](https://ipcheck.ing)
 ![PWA](https://img.shields.io/badge/PWA-Supported-blue)
 
-![CodeQL](https://github.com/jason5ng32/MyIP/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)
+![CodeQL](https://github.com/liu294100/ip-sleuth-toolkit/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)
 ![Docker Build and Push](https://github.com/jason5ng32/MyIP/actions/workflows/docker-image.yml/badge.svg?branch=main)
 
-🇺🇸 [English](README.md) | 🇨🇳 [简体中文](README_ZH.md) | 🇫🇷 [Français](README_FR.md)
+🇺🇸 [English](README.md) 
 
 👉 Demo: [https://ipcheck.ing](https://ipcheck.ing)
 
@@ -65,7 +63,7 @@ Make sure you have Node.js installed.
 Clone the code:
 
 ```bash
-git clone https://github.com/jason5ng32/MyIP.git
+git clone https://github.com/liu294100/ip-sleuth-toolkit.git
 ```
 
 Install and build:
@@ -184,4 +182,4 @@ Thanks to AI, it has given me, an unemployed product manager, a rapid opportunit
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jason5ng32/MyIP&type=Date)](https://star-history.com/#jason5ng32/MyIP&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=liu294100/ip-sleuth-toolkit&type=Date)](https://star-history.com/#liu294100/ip-sleuth-toolkit&Date)
