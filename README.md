@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![IPCheck.ing Banner](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/gh_banner.png)
+![IPCheck.ing Banner](https://raw.githubusercontent.com/liu294100/ip-sleuth-toolkit/main/public/github/gh_banner.png)
 
 <a href="https://trendshift.io/repositories/5332" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5332" alt="liu294100/ip-sleuth-toolkit" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
@@ -14,7 +14,7 @@
 ![PWA](https://img.shields.io/badge/PWA-Supported-blue)
 
 ![CodeQL](https://github.com/liu294100/ip-sleuth-toolkit/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)
-![Docker Build and Push](https://github.com/jason5ng32/MyIP/actions/workflows/docker-image.yml/badge.svg?branch=main)
+![Docker Build and Push](https://github.com/jliu294100/ip-sleuth-toolkit/actions/workflows/docker-image.yml/badge.svg?branch=main)
 
 🇺🇸 [English](README.md) 
 
@@ -22,7 +22,7 @@
 
 Feel free to bookmark the demo or deploy your own.
 
-[![Deploy with Docker](https://raw.githubusercontent.com/jason5ng32/MyIP/main/public/github/Docker.svg)](https://hub.docker.com/r/jason5ng32/myip)
+[![Deploy with Docker](https://raw.githubusercontent.com/liu294100/ip-sleuth-toolkit/main/public/github/Docker.svg)](https://hub.docker.com/r/jason5ng32/myip)
 
 </div>
 
